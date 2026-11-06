@@ -3,7 +3,7 @@ import {
   DISCIPLINES, TYPES, ajouterSeance, allure, dateIso, formaterDuree, lireSeances,
   nomType, supprimerSeance, trierSeances, verifier,
 } from '../domaine/journal.js';
-import { icone } from '../ui/composants.js';
+import { choix, icone } from '../ui/composants.js';
 
 const ICONES = { muayThai: 'gant', course: 'chaussure' };
 
@@ -15,13 +15,6 @@ function selectionDepart(date) {
   const prevue = seanceDuJour(date);
   const discipline = prevue.discipline === 'repos' ? 'course' : prevue.discipline;
   return { discipline, type: TYPES[discipline].find((t) => prevue.titre.toLowerCase().includes(t.nom.toLowerCase()))?.id ?? TYPES[discipline][0].id };
-}
-
-function choix(nom, valeur, libelle, coche, iconeNom) {
-  return `<label class="choix">
-    <input type="radio" name="${nom}" value="${valeur}" ${coche ? 'checked' : ''}>
-    <span>${iconeNom ? icone(iconeNom, 22) : ''}${libelle}</span>
-  </label>`;
 }
 
 const choixTypes = (discipline, selection) =>
