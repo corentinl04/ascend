@@ -5,6 +5,14 @@ export const tamponReel = () => '<span class="tampon tampon-reel">RÉEL</span>';
 export const icone = (nom, taille = 24) =>
   `<img class="icone" src="assets/images/icones/${nom}.png" width="${taille}" height="${taille}" alt="" draggable="false">`;
 
+// Bouton radio en forme de pastille, à placer dans une `.choix-ligne`.
+export function choix(nom, valeur, libelle, coche, iconeNom) {
+  return `<label class="choix">
+    <input type="radio" name="${nom}" value="${valeur}" ${coche ? 'checked' : ''}>
+    <span>${iconeNom ? icone(iconeNom, 22) : ''}${libelle}</span>
+  </label>`;
+}
+
 export function barre(valeur, max, couleur = 'or') {
   const pourcent = Math.round((valeur / max) * 100);
   return `<div class="barre barre-${couleur}" role="progressbar" aria-valuenow="${valeur}" aria-valuemin="0" aria-valuemax="${max}">
