@@ -3,16 +3,18 @@ import {
   prochaineAnnonce, texteCombo, tirerCombo,
 } from '../domaine/coach.js';
 import { formaterDuree } from '../domaine/journal.js';
+import { REGLAGES_COACH } from '../donnees/coach.js';
 import { NIVEAUX, SOURCES } from '../donnees/combos.js';
 import { choix } from '../ui/composants.js';
 import { cloche, dire, garderEcranAllume, libererEcran, preparerSon, taire, voixDisponible } from '../ui/voix.js';
 
-const ROUNDS = [2, 3, 4, 5];
-const DUREES = [[120, '2 min'], [180, '3 min'], [240, '4 min'], [300, '5 min']];
-const REPOS = [[30, '30 s'], [60, '1 min'], [90, '1 min 30'], [120, '2 min']];
-const RYTHMES = [[12, 'Calme'], [8, 'Soutenu'], [5, 'Intense']];
+const enPaires = (liste) => liste.map(({ valeur, libelle }) => [valeur, libelle]);
+const ROUNDS = REGLAGES_COACH.rounds;
+const DUREES = enPaires(REGLAGES_COACH.dureesRound);
+const REPOS = enPaires(REGLAGES_COACH.repos);
+const RYTHMES = enPaires(REGLAGES_COACH.rythmes);
 
-const DELAI_PREMIER_COMBO = 3;
+const DELAI_PREMIER_COMBO = REGLAGES_COACH.delaiPremierComboSecondes;
 
 const groupe = (titre, classe, options) =>
   `<fieldset class="difficulte"><legend>${titre}</legend><div class="choix-ligne ${classe}">${options}</div></fieldset>`;

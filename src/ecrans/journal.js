@@ -1,8 +1,9 @@
 import { seanceDuJour, dateCourte } from '../domaine/programme.js';
 import {
-  DISCIPLINES, TYPES, ajouterSeance, allure, dateIso, formaterDuree, lireSeances,
+  DISCIPLINES, TYPES, ajouterSeance, allure, dateIso, dejaImportee, formaterDuree, lireSeances,
   nomType, supprimerSeance, trierSeances, verifier,
 } from '../domaine/journal.js';
+import { lireFit } from '../domaine/fit.js';
 import { choix, icone } from '../ui/composants.js';
 
 const ICONES = { muayThai: 'gant', course: 'chaussure' };
@@ -25,6 +26,8 @@ function formulaire(aujourdhui, depart) {
   const notes = Array.from({ length: 10 }, (_, i) => choix('difficulte', i + 1, i + 1, false)).join('');
   return `<form class="carte formulaire" novalidate>
     <header class="section-tete"><h2>Noter une séance</h2></header>
+    <label class="bouton bouton-second importer">Importer depuis la montre (.fit)<input class="sr" type="file" data-import></label>
+    <p class="import-info" role="status" data-import-info hidden></p>
     <div class="choix-ligne deux" role="radiogroup" aria-label="Discipline">${disciplines}</div>
     <div class="choix-ligne trois" role="radiogroup" aria-label="Type de séance" data-types>${choixTypes(depart.discipline, depart.type)}</div>
     <div class="champs">
@@ -47,6 +50,7 @@ function ligne(seance) {
   const mesures = [formaterDuree(seance.dureeSecondes)];
   if (seance.distanceKm) mesures.unshift(`${seance.distanceKm.toLocaleString('fr-FR')} km`);
   if (seance.distanceKm) mesures.push(allure(seance.dureeSecondes, seance.distanceKm));
+  if (seance.fcMoyenne) mesures.push(`FC ${seance.fcMoyenne}${seance.fcMax ? ` / ${seance.fcMax}` : ''}`);
   return `<li class="seance">
     ${icone(ICONES[seance.discipline], 32)}
     <div class="seance-texte">
@@ -104,9 +108,51 @@ function brancher(conteneur, aujourdhui) {
     zoneErreurs.hidden = !erreurs.length;
   };
 
+  // Mesures de la montre gardées jusqu'à l'enregistrement : le formulaire ne les affiche pas.
+  let importee = null;
+  const zoneImport = form.querySelector('[data-import-info]');
+  const oublierImport = () => {
+    importee = null;
+    zoneImport.hidden = true;
+  };
+
+  // Le fichier préremplit le formulaire : la difficulté ressentie n'est pas dans la montre.
+  form.querySelector('[data-import]').addEventListener('change', async (e) => {
+    const fichier = e.target.files[0];
+    e.target.value = '';
+    if (!fichier) return;
+    let activite;
+    try {
+      activite = lireFit(await fichier.arrayBuffer());
+    } catch (erreur) {
+      afficherErreurs([erreur.message]);
+      return;
+    }
+    const debut = activite.debut.toISOString();
+    if (dejaImportee(debut)) {
+      afficherErreurs(['Cette activité est déjà dans ton journal.']);
+      return;
+    }
+    afficherErreurs([]);
+    const discipline = activite.course ? 'course' : 'muayThai';
+    form.querySelector(`[name=discipline][value=${discipline}]`).checked = true;
+    adapter(discipline);
+    form.querySelector('[name=date]').value = dateIso(activite.debut);
+    form.querySelector('[name=distance]').value = activite.distanceKm ? activite.distanceKm.toLocaleString('fr-FR') : '';
+    form.querySelector('[name=minutes]').value = Math.floor(activite.dureeSecondes / 60);
+    form.querySelector('[name=secondes]').value = activite.dureeSecondes % 60;
+    importee = { source: 'montre', debut };
+    if (activite.fcMoyenne) importee.fcMoyenne = activite.fcMoyenne;
+    if (activite.fcMax) importee.fcMax = activite.fcMax;
+    const fc = activite.fcMoyenne ? `, FC moyenne ${activite.fcMoyenne}${activite.fcMax ? `, max ${activite.fcMax}` : ''}` : '';
+    zoneImport.textContent = `Activité lue${fc}. Vérifie le type, note la difficulté, puis enregistre.`;
+    zoneImport.hidden = false;
+    form.querySelector('.difficulte').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const seance = lireFormulaire(form);
+    const seance = { ...lireFormulaire(form), ...importee };
     const erreurs = verifier(seance, aujourdhui);
     afficherErreurs(erreurs);
     if (erreurs.length) return;
@@ -117,6 +163,7 @@ function brancher(conteneur, aujourdhui) {
       return;
     }
     const { discipline, type } = seance;
+    oublierImport();
     form.reset();
     form.querySelector(`[name=discipline][value=${discipline}]`).checked = true;
     adapter(discipline);
