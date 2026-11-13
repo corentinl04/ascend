@@ -1,15 +1,15 @@
 // Coach vocal : déroulé des rounds et choix des combos. Logique sans DOM.
 
+import { REGLAGES_COACH } from '../donnees/coach.js';
 import { COMBOS } from '../donnees/combos.js';
 
 const CLE = 'ascend.coach.v1';
 
-export const PREPARATION = 10; // Le temps de poser le téléphone et de se mettre en garde.
-export const FIN_DE_PHASE = 10; // Annonce « Dix secondes », et plus de combo ensuite.
+export const PREPARATION = REGLAGES_COACH.preparationSecondes; // Le temps de se mettre en garde.
+export const FIN_DE_PHASE = REGLAGES_COACH.finDePhaseSecondes; // Annonce « Dix secondes », et plus de combo ensuite.
 
-// Le brief fixe 3 min de round, 1 min de repos et 2 à 3 rounds. Niveau et rythme sont
-// choisis à la main jusqu'à la mission 5, qui les liera aux tests.
-const DEPART = { rounds: 3, roundSecondes: 180, reposSecondes: 60, niveau: 1, rythme: 8 };
+// Niveau et rythme sont choisis à la main jusqu'à la mission 5, qui les liera aux tests.
+const DEPART = REGLAGES_COACH.depart;
 
 export function lireReglages() {
   try {

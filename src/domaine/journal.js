@@ -57,7 +57,10 @@ export function ajouterSeance(seance) {
   return enregistree;
 }
 
-export const supprimerSeance = (id) => ecrire(lireSeances().filter((s) => s.id !== id));
+// Une activité de la montre se reconnaît à son heure de début exacte.
+export const dejaImportee = (debut) => lireSeances().some((s) => s.debut === debut);
+
+export const supprimerSeance =(id) => ecrire(lireSeances().filter((s) => s.id !== id));
 
 // La plus récente d'abord, et à date égale la dernière saisie d'abord.
 export const trierSeances = (seances) =>
