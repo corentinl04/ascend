@@ -1,0 +1,24 @@
+{
+  "preparationSecondes": 10,
+  "finDePhaseSecondes": 10,
+  "delaiPremierComboSecondes": 3,
+  "depart": { "rounds": 3, "roundSecondes": 180, "reposSecondes": 60, "niveau": 1, "rythme": 8 },
+  "rounds": [2, 3, 4, 5],
+  "dureesRound": [
+    { "valeur": 120, "libelle": "2 min" },
+    { "valeur": 180, "libelle": "3 min" },
+    { "valeur": 240, "libelle": "4 min" },
+    { "valeur": 300, "libelle": "5 min" }
+  ],
+  "repos": [
+    { "valeur": 30, "libelle": "30 s" },
+    { "valeur": 60, "libelle": "1 min" },
+    { "valeur": 90, "libelle": "1 min 30" },
+    { "valeur": 120, "libelle": "2 min" }
+  ],
+  "rythmes": [
+    { "valeur": 12, "libelle": "Calme" },
+    { "valeur": 8, "libelle": "Soutenu" },
+    { "valeur": 5, "libelle": "Intense" }
+  ]
+}
