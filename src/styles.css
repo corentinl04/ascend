@@ -325,6 +325,9 @@ img { display: block; }
 .difficulte { border: 0; }
 .difficulte legend { margin-bottom: 6px; font-size: 12px; color: var(--texte-2); }
 .erreurs { font-size: 13px; color: #ff9d8a; }
+.formulaire .importer { margin-top: 0; font-size: 14px; text-align: center; cursor: pointer; }
+.importer:focus-within { outline: 2px solid var(--or); outline-offset: 2px; }
+.import-info { font-size: 13px; color: var(--or); }
 
 .seance { display: flex; gap: 10px; padding: 12px 0; border-top: 1px solid var(--filet); }
 .seance:first-child { padding-top: 0; border-top: 0; }
