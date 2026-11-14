@@ -463,3 +463,18 @@ img { display: block; }
 .guidee .coach-note a { color: var(--or); text-decoration: underline; }
 .guidee .coach-phase { font-size: 22px; text-align: center; color: var(--texte); }
 .coach-actions .bouton:only-child { grid-column: 1 / -1; }
+
+/* Fiches techniques de la bibliothèque */
+.fiche-bouton { width: 100%; min-height: 42px; margin-top: 8px; }
+.fiche { margin-top: 10px; padding: 12px; border: 1px solid var(--filet); border-radius: 10px; }
+.fiche-nom { color: var(--or); font: 600 15px / 1.3 var(--serif); letter-spacing: 0.06em; text-transform: uppercase; }
+.fiche-titre { margin-top: 12px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--texte-2); }
+.fiche ol, .fiche ul { margin: 6px 0 0; padding-left: 20px; font-size: 14px; line-height: 1.45; }
+.fiche ol { list-style: decimal; }
+.fiche ul { list-style: disc; }
+.fiche li + li { margin-top: 4px; }
+.fiche li::marker { color: var(--or); }
+.fiche [data-conseil] { width: 100%; min-height: 42px; margin-top: 14px; }
+.fiche-conseil { margin-top: 10px; padding: 10px 12px; border-left: 2px solid var(--or); font-size: 14px; line-height: 1.45; }
+.fiche-sources { margin-top: 10px; font-size: 12px; overflow-wrap: anywhere; }
+.fiche-sources a { color: var(--texte-2); text-decoration: underline; }
