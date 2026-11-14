@@ -4,6 +4,7 @@ import {
   nomType, supprimerSeance, trierSeances, verifier,
 } from '../domaine/journal.js';
 import { lireFit } from '../domaine/fit.js';
+import { exporter, importer, lireSauvegarde, nomFichier } from '../domaine/sauvegarde.js';
 import { choix, icone } from '../ui/composants.js';
 
 const ICONES = { muayThai: 'gant', course: 'chaussure' };
@@ -186,11 +187,87 @@ function brancher(conteneur, aujourdhui) {
   });
 }
 
+const carteSauvegarde = () => `<section class="carte sauvegarde">
+    <header class="section-tete"><h2>Sauvegarde</h2></header>
+    <p class="discret">Tes données restent sur cet appareil. Exporte-les de temps en temps dans un fichier pour les garder ailleurs ou les passer sur un autre appareil.</p>
+    <button class="bouton" type="button" data-exporter>Exporter mes données</button>
+    <label class="bouton bouton-second importer">Importer une sauvegarde<input class="sr" type="file" accept=".json,application/json" data-restaurer></label>
+    <div class="sauvegarde-confirmation" data-confirmation hidden>
+      <p data-resume></p>
+      <button class="bouton" type="button" data-confirmer-import>Remplacer mes données</button>
+      <button class="bouton bouton-second" type="button" data-annuler-import>Annuler</button>
+    </div>
+    <p class="import-info" role="status" data-sauvegarde-info hidden></p>
+  </section>`;
+
+function brancherSauvegarde(conteneur, aujourdhui) {
+  const zone = conteneur.querySelector('.sauvegarde');
+  const info = zone.querySelector('[data-sauvegarde-info]');
+  const confirmation = zone.querySelector('[data-confirmation]');
+  const dire = (texte, erreur = false) => {
+    info.textContent = texte;
+    info.classList.toggle('erreurs', erreur);
+    info.hidden = !texte;
+  };
+  let enAttente = null;
+
+  zone.querySelector('[data-exporter]').addEventListener('click', () => {
+    const fichier = new Blob([JSON.stringify(exporter(), null, 2)], { type: 'application/json' });
+    const lien = document.createElement('a');
+    lien.href = URL.createObjectURL(fichier);
+    lien.download = nomFichier(aujourdhui);
+    document.body.append(lien);
+    lien.click();
+    lien.remove();
+    setTimeout(() => URL.revokeObjectURL(lien.href), 10000);
+    dire(`Fichier ${lien.download} créé. Range-le dans un endroit sûr.`);
+  });
+
+  // Rien n'est remplacé avant la confirmation.
+  zone.querySelector('[data-restaurer]').addEventListener('change', async (e) => {
+    const fichier = e.target.files[0];
+    e.target.value = '';
+    if (!fichier) return;
+    const lu = lireSauvegarde(await fichier.text());
+    if (lu.erreur) {
+      confirmation.hidden = true;
+      dire(lu.erreur, true);
+      return;
+    }
+    enAttente = lu.sauvegarde;
+    const date = new Date(lu.sauvegarde.exporteLe).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+    zone.querySelector('[data-resume]').textContent = `Sauvegarde du ${date} : ${lu.seances} séance${lu.seances > 1 ? 's' : ''}. Elle remplace tes données actuelles (${lireSeances().length} séance${lireSeances().length > 1 ? 's' : ''}). Une copie de tes données actuelles reste gardée sur cet appareil.`;
+    confirmation.hidden = false;
+    dire('');
+  });
+
+  zone.querySelector('[data-annuler-import]').addEventListener('click', () => {
+    enAttente = null;
+    confirmation.hidden = true;
+  });
+
+  zone.querySelector('[data-confirmer-import]').addEventListener('click', () => {
+    if (!enAttente) return;
+    try {
+      importer(enAttente);
+    } catch {
+      dire('Import impossible : le stockage du navigateur est plein ou indisponible. Tes données n\'ont pas changé.', true);
+      return;
+    }
+    enAttente = null;
+    confirmation.hidden = true;
+    conteneur.querySelector('.historique').innerHTML = historique();
+    dire('Sauvegarde importée.');
+  });
+}
+
 export function journal(conteneur) {
   const maintenant = new Date();
   const aujourdhui = dateIso(maintenant);
   conteneur.innerHTML = `<h1 class="ecran-titre">Journal</h1>
     ${formulaire(aujourdhui, selectionDepart(maintenant))}
-    <section class="carte historique">${historique()}</section>`;
+    <section class="carte historique">${historique()}</section>
+    ${carteSauvegarde()}`;
   brancher(conteneur, aujourdhui);
+  brancherSauvegarde(conteneur, aujourdhui);
 }
