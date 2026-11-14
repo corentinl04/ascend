@@ -1,15 +1,36 @@
 import { BIBLIOTHEQUE } from '../donnees/videos.js';
+import { FICHES } from '../donnees/fiches.js';
 import { choix } from '../ui/composants.js';
 
 const { categories, niveaux, videos, verifieLe } = BIBLIOTHEQUE;
 const NOM_NIVEAU = Object.fromEntries(niveaux.map((n) => [n.id, n.nom]));
 const FILTRES = { tout: () => true, seul: (v) => v.solo, partenaire: (v) => !v.solo };
+// Une technique de vidéo mène à au plus une fiche.
+const FICHE_DE = Object.fromEntries(FICHES.fiches.flatMap((f) => f.techniques.map((t) => [t, f])));
 
 const echapper = (texte) =>
   texte.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
+const listeHtml = (balise, lignes) => `<${balise}>${lignes.map((l) => `<li>${echapper(l)}</li>`).join('')}</${balise}>`;
+
+function ficheTechnique(f) {
+  const sources = f.sources.map((id) => FICHES.sources[id])
+    .map((s) => `<a href="${s.url}" target="_blank" rel="noopener">${echapper(s.nom)}</a>`).join(', ');
+  return `<div class="fiche" data-fiche hidden>
+      <p class="fiche-nom">${echapper(f.nom)}</p>
+      <p class="fiche-titre">Étapes clés</p>
+      ${listeHtml('ol', f.etapes)}
+      <p class="fiche-titre">Erreurs fréquentes</p>
+      ${listeHtml('ul', f.erreurs)}
+      <button class="bouton bouton-second" type="button" data-conseil>Conseil du coach</button>
+      <p class="fiche-conseil" hidden>${echapper(f.conseil)}</p>
+      <p class="discret fiche-sources">Sources : ${sources}</p>
+    </div>`;
+}
+
 function fiche(v) {
   const infos = [v.chaine, v.langue === 'FR' ? 'Français' : 'Anglais', NOM_NIVEAU[v.niveau], v.solo ? 'Seul' : 'Avec partenaire'];
+  const technique = FICHE_DE[v.technique];
   return `<li class="video">
     <p class="video-technique">${echapper(v.technique)}</p>
     <p class="video-titre">${echapper(v.titre)}</p>
@@ -19,6 +40,7 @@ function fiche(v) {
       <button class="bouton bouton-second" type="button" data-voir="${v.id}">Voir la vidéo</button>
       <a class="video-lien" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener">Ouvrir sur YouTube</a>
     </div>
+    ${technique ? `<button class="bouton bouton-second fiche-bouton" type="button" data-ouvrir-fiche>Fiche technique</button>${ficheTechnique(technique)}` : ''}
   </li>`;
 }
 
@@ -60,6 +82,19 @@ export function bibliotheque(conteneur) {
   });
 
   zone.addEventListener('click', (e) => {
+    const ouvrirFiche = e.target.closest('[data-ouvrir-fiche]');
+    if (ouvrirFiche) {
+      const panneau = ouvrirFiche.nextElementSibling;
+      panneau.hidden = !panneau.hidden;
+      ouvrirFiche.textContent = panneau.hidden ? 'Fiche technique' : 'Fermer la fiche';
+      return;
+    }
+    const conseil = e.target.closest('[data-conseil]');
+    if (conseil) {
+      const texte = conseil.nextElementSibling;
+      texte.hidden = !texte.hidden;
+      return;
+    }
     const bouton = e.target.closest('[data-voir]');
     if (!bouton) return;
     const cadre = zone.querySelector(`[data-cadre="${bouton.dataset.voir}"]`);
