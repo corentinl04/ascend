@@ -478,3 +478,29 @@ img { display: block; }
 .fiche-conseil { margin-top: 10px; padding: 10px 12px; border-left: 2px solid var(--or); font-size: 14px; line-height: 1.45; }
 .fiche-sources { margin-top: 10px; font-size: 12px; overflow-wrap: anywhere; }
 .fiche-sources a { color: var(--texte-2); text-decoration: underline; }
+
+/* Sauvegarde du Journal */
+.sauvegarde { display: grid; gap: 10px; }
+.sauvegarde .bouton { margin-top: 0; }
+.sauvegarde .importer { font-size: 14px; text-align: center; cursor: pointer; }
+.sauvegarde-confirmation { display: grid; gap: 10px; padding: 12px; border: 1px solid var(--filet-fort); border-radius: 10px; font-size: 14px; }
+.import-info.erreurs { color: #ff9d8a; }
+
+/* PC : deux colonnes à partir de 960 px. Le téléphone garde une seule colonne. */
+@media (min-width: 960px) {
+  body { max-width: 1120px; padding-left: 16px; padding-right: 16px; }
+  #app { display: grid; grid-template-columns: 1fr 1fr; align-items: start; }
+  #app > * { grid-column: 1 / -1; }
+  /* La dernière rangée en 1fr absorbe la hauteur de la grande carte : pas de trou entre les petites. */
+  #app:has(> .heros), #app:has(> .formulaire) { grid-template-rows: auto auto auto auto 1fr; }
+  /* Camp : progression et quête à gauche, rival à droite. */
+  #app > .heros ~ .carte { grid-column: 1; }
+  #app > .heros ~ .rival { grid-column: 2; grid-row: 2 / span 4; }
+  /* Journal et Coach : le formulaire à gauche, le reste à droite. */
+  #app > .formulaire { grid-column: 1; grid-row: 2 / span 4; }
+  #app:has(> .formulaire) > .carte:not(.formulaire) { grid-column: 2; }
+  /* Vidéos : les catégories sur deux colonnes. */
+  [data-liste] { display: grid; grid-template-columns: 1fr 1fr; align-items: start; }
+  /* Écrans d'une seule carte : centrés, à largeur de lecture. */
+  #app > .coach-seance, #app > .verrou { justify-self: center; width: min(640px, 100%); }
+}

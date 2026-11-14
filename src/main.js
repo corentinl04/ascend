@@ -31,3 +31,8 @@ function afficher() {
 
 window.addEventListener('hashchange', afficher);
 afficher();
+
+// Hors ligne : le service worker garde une copie de l'appli sur l'appareil.
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js').catch(() => {});
+// Demande au navigateur de ne jamais effacer le Journal pour faire de la place.
+navigator.storage?.persist?.().catch(() => {});
