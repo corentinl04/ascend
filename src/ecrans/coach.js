@@ -5,6 +5,9 @@ import {
 import { formaterDuree } from '../domaine/journal.js';
 import { REGLAGES_COACH } from '../donnees/coach.js';
 import { NIVEAUX, SOURCES } from '../donnees/combos.js';
+import { deroule, dureeConnue } from '../domaine/seance.js';
+import { SEANCE } from '../donnees/seance.js';
+import { lancerSeanceGuidee } from './seanceGuidee.js';
 import { choix } from '../ui/composants.js';
 import { cloche, dire, garderEcranAllume, libererEcran, preparerSon, taire, voixDisponible } from '../ui/voix.js';
 
@@ -15,6 +18,8 @@ const REPOS = enPaires(REGLAGES_COACH.repos);
 const RYTHMES = enPaires(REGLAGES_COACH.rythmes);
 
 const DELAI_PREMIER_COMBO = REGLAGES_COACH.delaiPremierComboSecondes;
+const BLOCS_GUIDES = deroule(SEANCE.etapes);
+const ETAPES_GUIDEES = SEANCE.etapes.map((e) => e.nom).join(', ');
 
 const groupe = (titre, classe, options) =>
   `<fieldset class="difficulte"><legend>${titre}</legend><div class="choix-ligne ${classe}">${options}</div></fieldset>`;
@@ -28,6 +33,11 @@ const texteNiveau = (niveau) => `${combosJusquA(niveau).length} combos dans ce n
 function ecranReglages(r) {
   const liens = Object.values(SOURCES).map((s) => `<a href="${s.url}" target="_blank" rel="noopener">${s.nom}</a>`).join(' et ');
   return `<h1 class="ecran-titre">Coach</h1>
+    <section class="carte">
+      <header class="section-tete"><h2>Séance complète</h2></header>
+      <p class="discret coach-note">${ETAPES_GUIDEES}, tout guidé à la voix. Environ ${Math.round(dureeConnue(BLOCS_GUIDES) / 60)} min, plus le shadow guidé réglé ci-dessous et les exercices à ton rythme.</p>
+      <button class="bouton" type="button" data-complete>Lancer la séance complète</button>
+    </section>
     <form class="carte formulaire" novalidate>
       <header class="section-tete"><h2>Shadow guidé</h2></header>
       ${groupe('Nombre de rounds', 'quatre', options('rounds', ROUNDS.map((n) => [n, n]), r.rounds))}
@@ -98,8 +108,8 @@ const ecranFin = (reglages) => `<section class="carte coach-seance" data-phase="
 const titrePhase = ({ phase, round }, rounds) =>
   ({ preparation: 'Mets-toi en garde', round: `Round ${round} sur ${rounds}`, repos: 'Repos' }[phase]);
 
-// Lance la séance et renvoie la fonction qui l'arrête.
-function lancer(conteneur, reglages, retour) {
+// Lance la séance et renvoie la fonction qui l'arrête. Avec `suite`, la fin enchaîne sur l'étape suivante.
+function lancer(conteneur, reglages, retour, suite) {
   conteneur.innerHTML = ecranSeance();
   document.body.classList.add('en-seance');
   const zone = conteneur.querySelector('.coach-seance');
@@ -129,6 +139,7 @@ function lancer(conteneur, reglages, retour) {
 
   const terminer = () => {
     nettoyer();
+    if (suite) return suite();
     cloche(3);
     dire('Séance terminée');
     conteneur.innerHTML = ecranFin(reglages);
@@ -232,6 +243,12 @@ export function coach(conteneur) {
     conteneur.innerHTML = ecranReglages(lireReglages());
     brancherReglages(conteneur, (reglages) => {
       arreter = lancer(conteneur, reglages, ouvrirReglages);
+    });
+    // Le shadow guidé de la séance complète prend les réglages affichés.
+    conteneur.querySelector('[data-complete]').addEventListener('click', () => {
+      const reglages = lireFormulaire(conteneur.querySelector('form'));
+      ecrireReglages(reglages);
+      arreter = lancerSeanceGuidee(conteneur, { lancerShadow: lancer, reglages, quitter: ouvrirReglages });
     });
     window.scrollTo(0, 0);
   };
