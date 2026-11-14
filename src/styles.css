@@ -454,3 +454,12 @@ img { display: block; }
 .video-actions { display: flex; align-items: center; gap: 12px; }
 .video-actions .bouton { flex: 1; min-height: 42px; margin-top: 10px; }
 .video-lien { margin-top: 10px; font-size: 12px; color: var(--texte-2); text-decoration: underline; white-space: nowrap; }
+
+/* Séance guidée */
+.guidee-etape { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; }
+.guidee-detail { text-align: center; line-height: 1.45; }
+.guidee .video-lien { display: block; margin-top: 0; text-align: center; color: var(--or); }
+.guidee > .bouton-second { margin-top: 0; }
+.guidee .coach-note a { color: var(--or); text-decoration: underline; }
+.guidee .coach-phase { font-size: 22px; text-align: center; color: var(--texte); }
+.coach-actions .bouton:only-child { grid-column: 1 / -1; }
