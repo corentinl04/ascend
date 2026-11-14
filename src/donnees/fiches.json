@@ -1,0 +1,251 @@
+{
+  "verifieLe": "2026-11-14",
+  "sources": {
+    "evolve-debutant": { "nom": "Evolve MMA, guide du débutant", "url": "https://evolve-mma.com/blog/the-complete-muay-thai-beginners-guide/" },
+    "evolve-appuis": { "nom": "Evolve MMA, erreurs d'appuis", "url": "https://evolve-mma.com/blog/commons-footwork-mistakes-in-muay-thai/" },
+    "evolve-poings": { "nom": "Evolve MMA, les coups de poing", "url": "https://evolve-mma.com/blog/boxing-fundamentals-understanding-the-boxing-punch-number-system/" },
+    "evolve-erreurs-poings": { "nom": "Evolve MMA, erreurs de frappe", "url": "https://evolve-mma.com/blog/making-punching-mistakes-fix-now/" },
+    "evolve-uppercut": { "nom": "Evolve MMA, l'uppercut", "url": "https://evolve-mma.com/blog/boxing-101-how-to-land-an-uppercut/" },
+    "evolve-teep": { "nom": "Evolve MMA, le teep", "url": "https://evolve-mma.com/blog/the-complete-guide-to-the-muay-thai-push-kick/" },
+    "evolve-pieds": { "nom": "Evolve MMA, les 6 coups de pied", "url": "https://evolve-mma.com/blog/the-6-muay-thai-kicks-you-need-to-know-videos/" },
+    "evolve-low": { "nom": "Evolve MMA, le low kick", "url": "https://evolve-mma.com/blog/how-to-develop-powerful-crushing-low-kicks-in-muay-thai/" },
+    "fagan-middle": { "nom": "Sean Fagan, le coup de pied circulaire", "url": "https://www.muay-thai-guy.com/blog/muay-thai-roundhouse-kick" },
+    "wmm-middle": { "nom": "World Muaythai Magazine, le coup de pied circulaire", "url": "https://worldmuaythaimagazine.com/techniques/roundhouse-kick/" },
+    "fagan-solo": { "nom": "Sean Fagan, exercices seul", "url": "https://www.muay-thai-guy.com/blog/solo-muay-thai-training-drills" },
+    "evolve-genoux": { "nom": "Evolve MMA, les genoux", "url": "https://evolve-mma.com/blog/throw-stronger-muay-thai-knee-strikes-with-these-3-tips/" },
+    "evolve-coudes": { "nom": "Evolve MMA, les coudes", "url": "https://evolve-mma.com/blog/10-muay-thai-elbow-techniques-to-add-to-your-arsenal/" },
+    "evolve-check": { "nom": "Evolve MMA, le check", "url": "https://evolve-mma.com/blog/how-to-check-kicks-in-muay-thai/" },
+    "evolve-blocages": { "nom": "Evolve MMA, les blocages", "url": "https://evolve-mma.com/blog/5-basic-muay-thai-blocks-to-know-for-your-defense-game/" },
+    "evolve-clinch": { "nom": "Evolve MMA, le clinch", "url": "https://evolve-mma.com/blog/the-ultimate-guide-to-the-muay-thai-clinch/" }
+  },
+  "fiches": [
+    {
+      "id": "garde", "nom": "Garde et appuis", "techniques": ["Garde", "Appuis"],
+      "etapes": [
+        "Pied arrière reculé, orteils tournés vers l'extérieur, talon arrière légèrement décollé.",
+        "Pieds à peu près à largeur d'épaules, genoux légèrement fléchis, poids réparti sur les deux jambes.",
+        "Poings fermés, avant-bras et coudes légèrement écartés.",
+        "Main avant à hauteur du nez, main arrière à hauteur de la bouche.",
+        "Menton légèrement rentré, sans te boucher la vue."
+      ],
+      "erreurs": [
+        "Pieds trop écartés : tu mets trop de temps à bloquer ou à bouger, et tes côtes s'offrent aux kicks.",
+        "Pieds trop serrés : tu perds l'équilibre sur le direct et ton kick arrière tourne trop large.",
+        "Trop de poids sur la jambe avant : cible facile pour les low kicks.",
+        "Croiser les pieds en te déplaçant : tu ne peux plus ni frapper ni te défendre.",
+        "Jambes tendues : pas d'explosivité, moins d'équilibre au clinch."
+      ],
+      "conseil": "Fais ton shadow devant un miroir : vérifie que tes mains ne tombent pas quand tu frappes et que ton menton reste baissé.",
+      "sources": ["evolve-debutant", "evolve-appuis", "evolve-erreurs-poings"]
+    },
+    {
+      "id": "jab", "nom": "Jab", "techniques": ["Jab", "Jab et direct", "Jab et direct au corps"],
+      "etapes": [
+        "Pars de ta garde, mains hautes.",
+        "Envoie la main avant tout droit, à la même hauteur que dans ta garde : ni vers le haut, ni vers le bas.",
+        "Ramène la main dans la garde aussitôt après l'impact."
+      ],
+      "erreurs": [
+        "Laisser le visage découvert : l'autre main descend ou le menton se lève.",
+        "Écarter le coude sur le côté au lieu de frapper dans l'axe.",
+        "Frapper avec la mauvaise partie du poing : les deux premières jointures doivent être alignées avec l'avant-bras, poignet droit."
+      ],
+      "conseil": "Une fois la forme propre, travaille ton jab le plus vite possible.",
+      "sources": ["evolve-poings", "evolve-erreurs-poings"]
+    },
+    {
+      "id": "direct", "nom": "Direct", "techniques": ["Direct, crochet, uppercut"],
+      "etapes": [
+        "En garde, main avant devant le menton, main arrière à côté.",
+        "Pivote sur le pied arrière et tourne les hanches en envoyant le bras.",
+        "Après l'impact, ramène le buste et la main dans la garde."
+      ],
+      "erreurs": [
+        "Chercher la puissance avant la technique : la vitesse et la force viennent d'une forme propre.",
+        "Oublier les appuis : le pied arrière ne pivote pas et le coup part seulement du bras.",
+        "Bloquer sa respiration au lieu d'expirer sur l'impact."
+      ],
+      "conseil": "Expire et contracte les abdos au moment de l'impact : le coup est plus explosif et tu tiens plus longtemps.",
+      "sources": ["evolve-poings", "evolve-erreurs-poings"]
+    },
+    {
+      "id": "crochet", "nom": "Crochet", "techniques": ["Crochet avant"],
+      "etapes": [
+        "Pars de ta garde, mains hautes.",
+        "Pivote sur le pied avant et tourne le corps en lançant le coup.",
+        "Coude plié à 90 degrés, bras à hauteur des épaules, et garde cet angle jusqu'au bout du mouvement."
+      ],
+      "erreurs": [
+        "Laisser tomber l'autre main : le visage reste découvert.",
+        "Frapper sans tourner le corps, seulement avec le bras.",
+        "Frapper poignet cassé au lieu de garder le poing aligné avec l'avant-bras."
+      ],
+      "conseil": "Le coude reste plié pendant tout le coup : c'est la rotation du corps qui donne la puissance.",
+      "sources": ["evolve-poings", "evolve-erreurs-poings"]
+    },
+    {
+      "id": "uppercut", "nom": "Uppercut", "techniques": ["Uppercut arrière"],
+      "etapes": [
+        "Fléchis un peu les genoux.",
+        "Laisse descendre la main qui va frapper, coude plié à 90 degrés.",
+        "Pivote sur le pied arrière, tourne les hanches et pousse le poing vers le haut avec les jambes."
+      ],
+      "erreurs": [
+        "Laisser la main en bas après le coup au lieu de revenir en garde.",
+        "Aller chercher trop loin : tu perds l'équilibre et tu t'exposes au contre.",
+        "Laisser le menton découvert."
+      ],
+      "conseil": "La force vient des jambes : fléchis, tourne le buste, et lance le coup depuis la taille.",
+      "sources": ["evolve-poings", "evolve-uppercut"]
+    },
+    {
+      "id": "teep", "nom": "Teep", "techniques": ["Teep", "Feintes de teep"],
+      "etapes": [
+        "Tends la jambe d'appui en levant la jambe qui frappe.",
+        "Monte le genou haut avant de pousser.",
+        "Pousse les hanches vers l'avant et balance le bras du même côté.",
+        "Buste en arrière, menton baissé, l'autre main en garde.",
+        "Repose le pied et reviens dans ta garde de départ."
+      ],
+      "erreurs": [
+        "Faire un pas avec le pied arrière avant un teep jambe avant : l'adversaire le voit venir.",
+        "Teep paresseux : sans poussée de hanche, sans genou levé, sans bras.",
+        "Feinte de teep avec le genou trop bas : elle ne trompe personne."
+      ],
+      "conseil": "Le teep montre qui comprend le Muay Thai : il sert à contrôler la distance et à casser ce que l'adversaire prépare. Celui qui réfléchit gagne. (Kru Chaowalit Jocky Gym, Evolve MMA)",
+      "sources": ["evolve-teep"]
+    },
+    {
+      "id": "middle", "nom": "Coup de pied circulaire (middle et high)", "techniques": ["Middle kick", "High kick", "Low, middle, high kick"],
+      "etapes": [
+        "Jambe relâchée, presque un poids mort guidé par les hanches et le buste.",
+        "Monte sur l'avant du pied d'appui et pivote fort.",
+        "Pousse la hanche vers l'avant et balance le bras du même côté vers le bas.",
+        "Traverse la cible avec le tibia, menton caché derrière l'épaule.",
+        "Pour le high kick : prépare-le d'abord, par des coups au corps, pour faire baisser la garde."
+      ],
+      "erreurs": [
+        "Armer le genou comme en karaté au lieu de lancer la jambe d'un bloc.",
+        "Ne pas pivoter sur le pied d'appui : la hanche ne finit pas sa rotation.",
+        "Baisser les mains pendant le kick : tu prends le contre.",
+        "Partir trop en arrière avec le buste.",
+        "Viser avec le pied au lieu du tibia."
+      ],
+      "conseil": "Sois relâché : c'est le pivot et la hanche qui portent la jambe, pas la force du muscle.",
+      "sources": ["fagan-middle", "wmm-middle", "evolve-pieds"]
+    },
+    {
+      "id": "low", "nom": "Low kick", "techniques": ["Low kick"],
+      "etapes": [
+        "Claque la hanche et pivote sur la pointe du pied d'appui.",
+        "Balance la jambe comme un poids mort, à la manière d'une batte, dans la cuisse adverse.",
+        "Vise l'intérieur ou l'extérieur de la cuisse, avec le tibia.",
+        "Sors de la ligne centrale en décalant ton appui sur le côté."
+      ],
+      "erreurs": [
+        "Arrêter la rotation au contact au lieu de traverser la jambe.",
+        "Taper vers le haut comme dans un ballon au lieu de couper vers le bas avec la pointe du tibia.",
+        "Rester dans l'axe de l'adversaire au lieu de sortir de la ligne centrale."
+      ],
+      "conseil": "Coupe vers le bas avec le tibia et traverse la cuisse : ne t'arrête pas au contact.",
+      "sources": ["evolve-pieds", "evolve-low"]
+    },
+    {
+      "id": "switch", "nom": "Switch kick", "techniques": ["Switch kick"],
+      "etapes": [
+        "Deux pas rapides : recule le pied avant, puis avance le pied arrière.",
+        "Enchaîne aussitôt le coup de pied circulaire avec la jambe qui vient de passer derrière.",
+        "Reviens dans ta garde."
+      ],
+      "erreurs": [
+        "Sauter des deux pieds en même temps au lieu de faire deux pas rapides.",
+        "Baisser les mains pendant le changement de garde."
+      ],
+      "conseil": "Le switch sert à tromper l'adversaire : tout est dans le timing, les appuis et la vitesse.",
+      "sources": ["evolve-pieds", "wmm-middle"]
+    },
+    {
+      "id": "genou", "nom": "Genou", "techniques": ["Genoux en shadow", "Genou droit", "Genou en switch", "Genoux en clinch"],
+      "etapes": [
+        "Garde haute et appui solide sur la jambe qui reste au sol.",
+        "Pousse le genou vers l'avant et vers le haut en engageant la hanche.",
+        "Frappe avec la pointe du genou.",
+        "Vise une zone sensible, par exemple les reins plutôt que la poitrine."
+      ],
+      "erreurs": [
+        "Monter le genou à la verticale au lieu de le pousser vers l'adversaire.",
+        "Frapper avec la cuisse au lieu de la pointe du genou.",
+        "Perdre sa base sur un pied : tu te fais balayer."
+      ],
+      "conseil": "Pense à pousser le genou à travers l'adversaire, pas à le lever.",
+      "sources": ["evolve-genoux", "fagan-solo"]
+    },
+    {
+      "id": "coude", "nom": "Coudes", "techniques": ["Coude à travers la garde", "Coude remontant"],
+      "etapes": [
+        "Coude horizontal : pars de ta garde, mains devant le visage.",
+        "Lance le coude vers l'adversaire en tournant le corps, comme un crochet, hanches et pieds compris.",
+        "Ramène le bras dans la garde aussitôt.",
+        "Coude remontant : fléchis un peu les genoux, puis pousse sur les jambes et tourne les hanches, comme pour un uppercut."
+      ],
+      "erreurs": [
+        "Laisser l'autre main quitter le visage pendant le coude.",
+        "Frapper sans rotation des hanches et des pieds.",
+        "Laisser le bras dehors après la frappe."
+      ],
+      "conseil": "Touche avec la partie la plus osseuse du coude.",
+      "sources": ["evolve-coudes"]
+    },
+    {
+      "id": "check", "nom": "Check", "techniques": ["Check", "Blocage tibia", "Défense du middle kick"],
+      "etapes": [
+        "Garde stable, poids réparti, assez léger pour lever l'une ou l'autre jambe.",
+        "Quand le kick arrive, lève la jambe avant, tibia légèrement tourné vers l'extérieur, garde haute.",
+        "Tourne un peu la hanche pour que le tibia reçoive le coup sous un bon angle.",
+        "Le genou monte près du coude, buste droit.",
+        "Repose la jambe tout de suite dans ta garde."
+      ],
+      "erreurs": [
+        "Lever la jambe trop tard : le kick passe.",
+        "Ne pas tourner assez la hanche : tu encaisses au lieu de bloquer.",
+        "Partir en arrière avec le buste.",
+        "Baisser les mains pendant le check."
+      ],
+      "conseil": "Le check n'est pas passif, c'est une arme : chaque kick bien bloqué te donne une ouverture pour contrer. (Kru Chaowalit Jocky Gym, Evolve MMA)",
+      "sources": ["evolve-check", "evolve-blocages"]
+    },
+    {
+      "id": "blocage", "nom": "Bloquer les poings", "techniques": ["Bloquer un poing"],
+      "etapes": [
+        "Contre les coups droits et les coudes de face : gants devant le visage, coudes serrés.",
+        "Contre les crochets et les coudes de côté : gants contre les oreilles, coudes serrés.",
+        "Au corps : descends le coude pour couvrir ce côté.",
+        "Contre aussitôt, pendant que l'adversaire ramène sa main."
+      ],
+      "erreurs": [
+        "Bloquer un high kick avec seulement les gants contre les oreilles : le choc passe quand même.",
+        "Descendre les deux avant-bras devant le corps : la tête reste exposée aux feintes.",
+        "Rester immobile derrière sa garde au lieu de bouger."
+      ],
+      "conseil": "Dès que le coup touche tes coudes, réponds par un direct, un uppercut ou un crochet.",
+      "sources": ["evolve-blocages"]
+    },
+    {
+      "id": "clinch", "nom": "Clinch", "techniques": ["Bases du clinch", "Bases du corps à corps", "Technique de corps à corps"],
+      "etapes": [
+        "Passe les deux mains autour de la tête de l'adversaire.",
+        "Serre les avant-bras contre les côtés de son cou.",
+        "Tire sa posture vers ta poitrine.",
+        "Paumes verrouillées autour du cou, gants qui pèsent sur le haut de sa tête, coudes serrés contre sa clavicule."
+      ],
+      "erreurs": [
+        "Laisser l'adversaire prendre la position intérieure avec ses bras.",
+        "Laisser casser sa propre posture : celui qui tient ta tête tient ton équilibre.",
+        "Ne garder qu'un seul point de contrôle au lieu de deux.",
+        "Serrer l'adversaire vers l'arrière depuis une ceinture : c'est une faute dangereuse."
+      ],
+      "conseil": "Gagne d'abord la position intérieure : les mains à l'intérieur des bras adverses décident souvent qui domine le clinch.",
+      "sources": ["evolve-clinch"]
+    }
+  ]
+}
