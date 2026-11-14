@@ -1,0 +1,27 @@
+{
+  "sources": {
+    "yokkao": { "nom": "YOKKAO Training Center Bangkok", "url": "https://yokkao.com/pages/training" },
+    "fagan": { "nom": "Sean Fagan, combattant et coach pro", "url": "https://www.muay-thai-guy.com/blog/solo-muay-thai-training-drills" }
+  },
+  "etapes": [
+    { "id": "echauffement", "nom": "Échauffement", "source": "yokkao", "blocs": [
+      { "texte": "Mobilité", "detail": "Fais tourner chaque articulation, sans forcer. Appuie sur Suivant quand c'est fait." },
+      { "texte": "Échauffement général", "detail": "Monte doucement en température.", "secondes": 600 }
+    ] },
+    { "id": "corde", "nom": "Corde", "source": "yokkao", "blocs": [
+      { "texte": "Corde à sauter", "detail": "Rythme régulier, reste léger sur les appuis.", "secondes": 600 }
+    ] },
+    { "id": "technique", "nom": "Shadow technique", "source": "fagan", "blocs": [
+      { "texte": "Teeps", "detail": "20 à 30 de chaque jambe. Pousse avec la hanche, jambe tendue et contrôlée.", "secondes": 150, "video": "Rl71b8GNZWo" },
+      { "texte": "Middle kicks", "detail": "3 séries de 10 de chaque jambe. La puissance vient de la hanche, pivote sur le pied d'appui.", "secondes": 150, "video": "mWFUS6eI0qc" },
+      { "texte": "Coudes", "detail": "3 séries : 10 coudes horizontaux, puis 10 coudes remontants. Mouvement court et serré.", "secondes": 150, "video": "mWf4TAlYhYw" },
+      { "texte": "Genoux", "detail": "3 séries de 20 de chaque jambe. Monte le genou vers l'avant en engageant la hanche.", "secondes": 150, "video": "hFxVHcJA_m0" }
+    ] },
+    { "id": "shadow", "nom": "Shadow guidé", "source": "fagan", "coach": true },
+    { "id": "renfo", "nom": "Renfo", "source": "fagan", "blocs": [
+      { "texte": "Squats sautés", "detail": "30 secondes d'effort, 30 secondes de repos, 4 fois.", "secondes": 30, "series": 4, "repos": 30 },
+      { "texte": "Abdos", "detail": "À ton rythme. Appuie sur Suivant quand c'est fait.", "source": "yokkao" },
+      { "texte": "Retour au calme", "detail": "Marche, respire, étire-toi doucement. Appuie sur Suivant pour finir.", "source": "yokkao" }
+    ] }
+  ]
+}
