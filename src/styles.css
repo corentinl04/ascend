@@ -422,3 +422,35 @@ img { display: block; }
 @media (prefers-reduced-motion: reduce) {
   .barre span, .heros::after, .heros-combattant { animation: none; }
 }
+
+/* Bibliothèque vidéo */
+.biblio-intro { margin-bottom: 12px; font-size: 13px; }
+.biblio-categorie { padding: 0; }
+.biblio-categorie summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 52px;
+  padding: 0 16px;
+  font: 700 14px / 1.2 var(--serif);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--or);
+  cursor: pointer;
+  list-style: none;
+}
+.biblio-categorie summary::-webkit-details-marker { display: none; }
+.biblio-categorie summary::after { content: '+'; margin-left: 10px; color: var(--texte-2); }
+.biblio-categorie[open] summary::after { content: '−'; }
+.biblio-categorie summary .discret { margin-left: auto; font: 13px var(--sans); letter-spacing: 0; }
+.biblio-texte { padding: 0 16px 6px; font-size: 13px; }
+.videos { margin: 0; padding: 0 12px 12px; list-style: none; }
+.video { padding: 12px 4px; border-top: 1px solid var(--filet); }
+.video-technique { font-weight: 700; }
+.video-titre { margin-top: 2px; font-size: 13px; overflow-wrap: anywhere; }
+.video-infos { margin-top: 4px; font-size: 12px; }
+.video-cadre { position: relative; margin-top: 10px; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; background: #000; }
+.video-cadre iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-actions { display: flex; align-items: center; gap: 12px; }
+.video-actions .bouton { flex: 1; min-height: 42px; margin-top: 10px; }
+.video-lien { margin-top: 10px; font-size: 12px; color: var(--texte-2); text-decoration: underline; white-space: nowrap; }

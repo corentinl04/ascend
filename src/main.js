@@ -1,4 +1,5 @@
 import { accueil } from './ecrans/accueil.js';
+import { bibliotheque } from './ecrans/bibliotheque.js';
 import { coach } from './ecrans/coach.js';
 import { journal } from './ecrans/journal.js';
 import { verrouille } from './ecrans/verrouille.js';
@@ -8,7 +9,7 @@ const ROUTES = [
   { id: '', nom: 'Camp', icone: 'feu', ecran: accueil },
   { id: 'journal', nom: 'Journal', icone: 'livre', ecran: journal },
   { id: 'coach', nom: 'Coach', icone: 'cor', ecran: coach },
-  { id: 'combos', nom: 'Combos', icone: 'gant', ecran: verrouille({ titre: 'Techniques et combos', mission: 4, texte: 'Fiches avec étapes clés, erreurs fréquentes et vidéo d\'un vrai coach.' }) },
+  { id: 'combos', nom: 'Vidéos', icone: 'gant', ecran: bibliotheque },
   { id: 'tests', nom: 'Tests', icone: 'cible', ecran: verrouille({ titre: 'Tests', mission: 5, texte: 'Tests tous les 15 jours, niveaux, XP et rival.' }) },
 ];
 
